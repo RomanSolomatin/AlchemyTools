@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{C0ACE1B6-4DD5-C201-BB4D-7A9A2E597A5A}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "AlchemyTools",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

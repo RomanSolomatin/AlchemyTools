@@ -8,6 +8,16 @@
 			"Name": "AlchemyTools",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "AlchemyIO",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "AlchemyCamera",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }

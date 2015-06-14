@@ -4,13 +4,12 @@
 
 using UnrealBuildTool;
 
-public class AlchemyTools : ModuleRules
+public class AlchemyCamera : ModuleRules
 {
-	public AlchemyTools(TargetInfo Target)
+	public AlchemyCamera(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AlchemyIO", "AlchemyCamera" });
-
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PrivateDependencyModuleNames.AddRange(new string[] { });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

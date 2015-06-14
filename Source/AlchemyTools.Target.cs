@@ -1,4 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//The MIT License(MIT)
+//Copyright(c) 2015 Andrew Armbruster
+//Please read included README for LICENSE agreement
 
 using UnrealBuildTool;
 using System.Collections.Generic;
@@ -20,6 +22,6 @@ public class AlchemyToolsTarget : TargetRules
 		ref List<string> OutExtraModuleNames
 		)
 	{
-		OutExtraModuleNames.AddRange( new string[] { "AlchemyTools" } );
+		OutExtraModuleNames.AddRange( new string[] { "AlchemyTools", "AlchemyIO", "AlchemyCamera" } );
 	}
 }

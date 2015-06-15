@@ -1,6 +1,6 @@
 //The MIT License(MIT)
 //Copyright(c) 2015 Andrew Armbruster
-//Please see included README for full LICENSE
+//Please read included README for LICENSE agreement
 
 #include "AlchemyCamera.h"
 #include "AlchemyOrbitCamera.h"
@@ -77,7 +77,7 @@ void AAlchemyOrbitCamera::MoveX(float Val)
 
 void AAlchemyOrbitCamera::MoveY(float Val)
 {
-	if (bIstouching && Controller != NULL) FTouchDelta.Y = -Val * 16.0f;
+	if (bIsTouching && Controller != NULL) FTouchDelta.Y = -Val * 16.0f;
 }
 
 void AAlchemyOrbitCamera::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)

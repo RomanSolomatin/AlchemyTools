@@ -10,12 +10,17 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "AlchemyIO",
+			"Name": "AlchemyAnimation",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		},
 		{
 			"Name": "AlchemyCamera",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "AlchemyIO",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		}

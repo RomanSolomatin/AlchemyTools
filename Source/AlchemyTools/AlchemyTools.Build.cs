@@ -8,7 +8,7 @@ public class AlchemyTools : ModuleRules
 {
 	public AlchemyTools(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AlchemyIO", "AlchemyCamera" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AlchemyAnimation", "AlchemyCamera", "AlchemyIO" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

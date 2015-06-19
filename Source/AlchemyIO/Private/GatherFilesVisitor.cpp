@@ -8,12 +8,27 @@
 bool FAllImagesVisitor::Visit(const TCHAR* FilenameOrDirectory, bool bIsDirectory)
 {
 	FString fileOrDirectory = FString(FilenameOrDirectory);
-	//if (!bIsDirectory)
-	//{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *fileOrDirectory);
+	if (!bIsDirectory && bFiles)
+	{
+		if (WildCard.IsEmpty())
+		{
+			Result.Add(*fileOrDirectory);
+			return true;
+		}
+		else
+		{
+			if (fileOrDirectory.MatchesWildcard(WildCard))
+			{
+				Result.Add(*fileOrDirectory);
+				return true;
+			}
+		}
+	}
+	UE_LOG(LogTemp, Warning, TEXT("not a file"));
+	if (bIsDirectory && bDirectories)
+	{
 		Result.Add(*fileOrDirectory);
-		//Images.Add(*fileOrDirectory);
 		return true;
-	//}
-	//return false;
+	}
+	return true;
 }

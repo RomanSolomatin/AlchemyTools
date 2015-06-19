@@ -1,5 +1,5 @@
 //Copyright(c) 2015 Andrew Armbruster
-//Please read included README for LICENSE agreement
+//Please see included README for LICENSE agreement
 
 #pragma once
 #include "GenericPlatformFile.h"
@@ -17,11 +17,11 @@ public:
 	FString WildCard;
 	bool bFiles;
 	bool bDirectories;
-	FAllImagesVisitor(TArray<FString>& InResult, const FString& InWildCard, bool bInFiles, bool bInDirectories)
+	FAllImagesVisitor(TArray<FString>& InResult, const FString& WildCard, bool bFiles, bool bDirectories)
 		: Result(InResult)
-		, WildCard(InWildCard)
-		, bFiles(bInFiles)
-		, bDirectories(bInDirectories)
+		, WildCard(WildCard)
+		, bFiles(bFiles)
+		, bDirectories(bDirectories)
 	{
 	}
 	virtual bool Visit(const TCHAR* FilenameOrDirectory, bool bIsDirectory) override;

@@ -22,7 +22,10 @@
 		{
 			"Name": "AlchemyIO",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
+			"LoadingPhase": "PreDefault",
+			"AdditionalDependencies": [
+				"CoreUObject"
+			]
 		}
 	]
 }

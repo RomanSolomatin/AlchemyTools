@@ -7,17 +7,16 @@
 
 
 /**
- * 
+ * Visitor for getting list of directories and files in a given path
  */
-class ALCHEMYIO_API FAllImagesVisitor : public IPlatformFile::FDirectoryVisitor
+class ALCHEMYIO_API FGatherFilesVisitor : public IPlatformFile::FDirectoryVisitor
 {
 public:
-
 	TArray<FString>& Result;
 	FString WildCard;
 	bool bFiles;
 	bool bDirectories;
-	FAllImagesVisitor(TArray<FString>& InResult, const FString& WildCard, bool bFiles, bool bDirectories)
+	FGatherFilesVisitor(TArray<FString>& InResult, const FString& WildCard, bool bFiles, bool bDirectories)
 		: Result(InResult)
 		, WildCard(WildCard)
 		, bFiles(bFiles)

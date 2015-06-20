@@ -3,32 +3,17 @@
 
 #include "AlchemyIO.h"
 #include "GenericPlatformFile.h"
-#include "AllImagesVisitor.h"
+#include "GatherFilesVisitor.h"
 
-bool FAllImagesVisitor::Visit(const TCHAR* FilenameOrDirectory, bool bIsDirectory)
+bool FGatherFilesVisitor::Visit(const TCHAR* FilenameOrDirectory, bool bIsDirectory)
 {
 	FString fileOrDirectory = FString(FilenameOrDirectory);
 	if (!bIsDirectory && bFiles)
-	{
-		if (WildCard.IsEmpty())
-		{
+		if (WildCard.IsEmpty()) 
 			Result.Add(*fileOrDirectory);
-			return true;
-		}
 		else
-		{
 			if (fileOrDirectory.MatchesWildcard(WildCard))
-			{
 				Result.Add(*fileOrDirectory);
-				return true;
-			}
-		}
-	}
-	UE_LOG(LogTemp, Warning, TEXT("not a file"));
-	if (bIsDirectory && bDirectories)
-	{
-		Result.Add(*fileOrDirectory);
-		return true;
-	}
+	if (bIsDirectory && bDirectories) Result.Add(*fileOrDirectory);
 	return true;
 }

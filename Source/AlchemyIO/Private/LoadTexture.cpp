@@ -1,4 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//Copyright(c) 2015 Andrew Armbruster
+//Please read included README for LICENSE agreement
+//The code in this file is word for word from another online source but I'm now unable to find url or person(s) to give credit. I'll include that as soon as I find it
 
 #include "AlchemyIO.h"
 #include "Engine.h"
@@ -9,16 +11,27 @@
 #include "LoadTexture.h"
 
 
-UTexture2D* ULoadTexture::LoadFile(FString TextureFilename, EImageFormat::Type ImageFormat)
+ULoadTexture::ULoadTexture(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
 {
 
+}
+
+/*
+Load an image file by name(ie: full path)
+*/
+UTexture2D* ULoadTexture::LoadFile(FString TextureFilename, EImageExt ImageExt)
+{
 	// Represents the entire file in memory.
 	TArray<uint8> RawFileData;
 
 	if (FFileHelper::LoadFileToArray(RawFileData, *TextureFilename))
 	{
 		IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
-		// Note: PNG format.  Other formats are supported
+		uint8 bytes = (uint8)ImageExt;
+
+		EImageFormat::Type ImageFormat = (EImageFormat::Type)ImageExt;
+
 		IImageWrapperPtr ImageWrapper = ImageWrapperModule.CreateImageWrapper(ImageFormat);
 		if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(RawFileData.GetData(), RawFileData.Num()))
 		{
@@ -45,7 +58,9 @@ UTexture2D* ULoadTexture::LoadFile(FString TextureFilename, EImageFormat::Type I
 	return NULL;
 }
 
-/** Loads a texture from the data path */
+/*
+Load a dds texture file by name(ie: full path)
+*/
 UTexture2D* ULoadTexture::LoadDDS(FString TextureFilename)
 {
 	UTexture2D* Texture = NULL;

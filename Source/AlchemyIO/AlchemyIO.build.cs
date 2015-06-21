@@ -6,8 +6,19 @@ public class AlchemyIO : ModuleRules
 {
 	public AlchemyIO(TargetInfo Target)
 	{
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+        PublicDependencyModuleNames.AddRange(new string[] { 
+            "Core", 
+            "CoreUObject", 
+            "Engine", 
+            "InputCore",
+            "ImageWrapper",
+        });
 		PrivateDependencyModuleNames.AddRange(new string[] { });
+
+        PrivateIncludePaths.AddRange(new string[] {
+            "AlchemyIO/Public",
+            "AlchemyIO/Private"
+        });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

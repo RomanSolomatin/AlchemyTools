@@ -10,22 +10,22 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "AlchemyAnimation",
-			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
-		},
-		{
 			"Name": "AlchemyCamera",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		},
-		{
-			"Name": "AlchemyIO",
+        {
+            "Name": "AlchemyIO",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault",
+            "AdditionalDependencies": [
+                "CoreUObject"
+            ]
+        },
+        {
+			"Name": "AlchemySideScroller",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault",
-			"AdditionalDependencies": [
-				"CoreUObject"
-			]
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }

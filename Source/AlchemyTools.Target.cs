@@ -22,6 +22,11 @@ public class AlchemyToolsTarget : TargetRules
 		ref List<string> OutExtraModuleNames
 		)
 	{
-		OutExtraModuleNames.AddRange( new string[] { "AlchemyTools", "AlchemyAnimation", "AlchemyCamera", "AlchemyIO" } );
+		OutExtraModuleNames.AddRange( new string[] { 
+		"AlchemyTools", 
+		"AlchemyAnimation", 
+		"AlchemyCamera", 
+		"AlchemyIO", 
+		"AlchemySideScroller" } );
 	}
 }

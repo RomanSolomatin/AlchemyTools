@@ -3,14 +3,14 @@
 //Please read included README for LICENSE agreement
 
 #include "AlchemyCamera.h"
-#include "AlchemyOrbitCamera.h"
+#include "OrbitCamera.h"
 
 
-AAlchemyOrbitCamera::AAlchemyOrbitCamera(const FObjectInitializer& ObjectInitializer)
+AOrbitCamera::AOrbitCamera(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
 
-	FOrbitMultiplier = 0.02f;
+	FOrbitMultiplier = 0.1f;
 	// Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -18,11 +18,13 @@ AAlchemyOrbitCamera::AAlchemyOrbitCamera(const FObjectInitializer& ObjectInitial
 
 	// Create a camera boom attached to the root (capsule
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
+	
 	CameraBoom->TargetArmLength = 500.f;
 	CameraBoom->SocketOffset = FVector(0.f, 0.f, 75.f);
 	CameraBoom->bEnableCameraLag = true;
 	CameraBoom->CameraLagSpeed = 15.0f;
 	CameraBoom->RelativeRotation = FRotator(0.f, 180.f, 0.f);
+	CameraBoom->bDoCollisionTest = false;
 	RootComponent = CameraBoom;
 
 	// Create a camera and attach to boom
@@ -35,19 +37,19 @@ AAlchemyOrbitCamera::AAlchemyOrbitCamera(const FObjectInitializer& ObjectInitial
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void AAlchemyOrbitCamera::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void AOrbitCamera::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	check(InputComponent);
-	InputComponent->BindAxis("MouseX", this, &AAlchemyOrbitCamera::MoveX);
-	InputComponent->BindAxis("MouseY", this, &AAlchemyOrbitCamera::MoveY);
-	InputComponent->BindTouch(IE_Pressed, this, &AAlchemyOrbitCamera::TouchStarted);
-	InputComponent->BindTouch(IE_Released, this, &AAlchemyOrbitCamera::TouchStopped);
-	InputComponent->BindTouch(IE_Repeat, this, &AAlchemyOrbitCamera::TouchRepeat);
-	InputComponent->BindAction("Touch", IE_Pressed, this, &AAlchemyOrbitCamera::MouseDown);
-	InputComponent->BindAction("Touch", IE_Released, this, &AAlchemyOrbitCamera::MouseUp);
+	InputComponent->BindAxis("MouseX", this, &AOrbitCamera::MoveX);
+	InputComponent->BindAxis("MouseY", this, &AOrbitCamera::MoveY);
+	InputComponent->BindTouch(IE_Pressed, this, &AOrbitCamera::TouchStarted);
+	InputComponent->BindTouch(IE_Released, this, &AOrbitCamera::TouchStopped);
+	InputComponent->BindTouch(IE_Repeat, this, &AOrbitCamera::TouchRepeat);
+	InputComponent->BindAction("Touch", IE_Pressed, this, &AOrbitCamera::MouseDown);
+	InputComponent->BindAction("Touch", IE_Released, this, &AOrbitCamera::MouseUp);
 }
 
-void AAlchemyOrbitCamera::Tick(float DeltaSeconds)
+void AOrbitCamera::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	//Rotate and ease the Actor based on the input delta
@@ -58,39 +60,39 @@ void AAlchemyOrbitCamera::Tick(float DeltaSeconds)
 	AddActorLocalRotation(PitchRotation);
 }
 
-void AAlchemyOrbitCamera::MouseDown()
+void AOrbitCamera::MouseDown()
 {
 	bIsTouching = true;
 }
 
-void AAlchemyOrbitCamera::MouseUp()
+void AOrbitCamera::MouseUp()
 {
 	bIsTouching = false;
 }
 
-void AAlchemyOrbitCamera::MoveX(float Val)
+void AOrbitCamera::MoveX(float Val)
 {
 	if (!bIsTouching) return;
 
 	if (bIsTouching && Controller != NULL) FTouchDelta.X = Val * 16.0f;
 }
 
-void AAlchemyOrbitCamera::MoveY(float Val)
+void AOrbitCamera::MoveY(float Val)
 {
 	if (bIsTouching && Controller != NULL) FTouchDelta.Y = -Val * 16.0f;
 }
 
-void AAlchemyOrbitCamera::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AOrbitCamera::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	FDelayedLocation = FPreviousLocation = Location;
 }
 
-void AAlchemyOrbitCamera::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AOrbitCamera::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	
 }
 
-void AAlchemyOrbitCamera::TouchRepeat(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AOrbitCamera::TouchRepeat(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	FDelayedLocation = FPreviousLocation;
 	FTouchDelta = Location - FDelayedLocation;

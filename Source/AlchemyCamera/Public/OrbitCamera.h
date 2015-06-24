@@ -5,14 +5,14 @@
 #pragma once
 
 #include "GameFramework/Pawn.h"
-#include "AlchemyOrbitCamera.generated.h"
+#include "OrbitCamera.generated.h"
 
 
 /**
 *
 */
 UCLASS()
-class ALCHEMYCAMERA_API AAlchemyOrbitCamera : public APawn
+class ALCHEMYCAMERA_API AOrbitCamera : public APawn
 {
 	GENERATED_BODY()
 
@@ -53,7 +53,7 @@ protected:
 public:
 
 
-	AAlchemyOrbitCamera(const FObjectInitializer& ObjectInitializer);
+	AOrbitCamera(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Tick(float DeltaSeconds) override;
 

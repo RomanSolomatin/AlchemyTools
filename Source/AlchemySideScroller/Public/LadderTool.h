@@ -8,12 +8,15 @@
 #include "Components/SplineComponent.h"
 #include "LadderTool.generated.h"
 
+/*
+*A ladder generation tool
+*/
 UCLASS()
 class ALCHEMYSIDESCROLLER_API ALadderTool : public AActor
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Miscs , meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Ladder, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* RootSceneComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Collider, meta = (AllowPrivateAccess = "true"))
@@ -44,7 +47,8 @@ protected:
 	UStaticMeshComponent* GenLadderComponent(UStaticMesh* mesh, float zPos, FName name);
 
 public:	
-	// Sets default values for this actor's properties
+	//Constructor
 	ALadderTool();
+	//Called any time a variable is changed
 	void OnConstruction(const FTransform& Transform) override;
 };

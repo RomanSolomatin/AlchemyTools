@@ -24,7 +24,6 @@ public class AlchemyToolsTarget : TargetRules
 	{
 		OutExtraModuleNames.AddRange( new string[] { 
 		"AlchemyTools", 
-		"AlchemyAnimation", 
 		"AlchemyCamera", 
 		"AlchemyIO", 
 		"AlchemySideScroller" } );

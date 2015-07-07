@@ -3,7 +3,6 @@
 //Please read included README for LICENSE agreement
 
 #include "AlchemySideScroller.h"
-#include "Components/SplineComponent.h"
 #include "LadderTool.h"
 
 ALadderTool::ALadderTool()

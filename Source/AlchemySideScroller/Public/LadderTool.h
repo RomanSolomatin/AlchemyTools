@@ -5,7 +5,6 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "Components/SplineComponent.h"
 #include "LadderTool.generated.h"
 
 /*

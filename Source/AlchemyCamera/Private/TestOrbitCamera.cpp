@@ -4,9 +4,9 @@
 
 #include "AlchemyCamera.h"
 #include "Engine.h"
-#include "OrbitCamera.h"
+#include "TestOrbitCamera.h"
 
-AOrbitCamera::AOrbitCamera(const FObjectInitializer& ObjectInitializer)
+ATestOrbitCamera::ATestOrbitCamera(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
 	FOrbitMultiplier = 0.1f;
@@ -17,7 +17,7 @@ AOrbitCamera::AOrbitCamera(const FObjectInitializer& ObjectInitializer)
 
 	// Create a camera boom attached to the root (capsule
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
-
+	
 	CameraBoom->TargetArmLength = 500.f;
 	CameraBoom->SocketOffset = FVector(0.f, 0.f, 0.0f);
 	CameraBoom->bEnableCameraLag = true;
@@ -32,11 +32,11 @@ AOrbitCamera::AOrbitCamera(const FObjectInitializer& ObjectInitializer)
 	OrbitCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 }
 
-void AOrbitCamera::Tick(float DeltaSeconds)
+void ATestOrbitCamera::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	//Rotate and ease the Actor based on the input delta
-
+	
 	if (FOrbitDelta.Size() <= 0) return;
 	const FRotator YawRotation(0, FOrbitDelta.X, 0);
 	AddActorWorldRotation(YawRotation);
@@ -46,41 +46,42 @@ void AOrbitCamera::Tick(float DeltaSeconds)
 	UE_LOG(LogTemp, Warning, TEXT("OrbitDeltaX: %f"), FOrbitDelta.X);
 }
 
-void AOrbitCamera::OrbitX(float DeltaX)
+void ATestOrbitCamera::OrbitX(float DeltaX)
 {
 	if (bCanOrbit && Controller != NULL) FOrbitDelta.X = DeltaX * FOrbitMultiplier;
 }
 
-void AOrbitCamera::OrbitY(float DeltaY)
+void ATestOrbitCamera::OrbitY(float DeltaY)
 {
 	if (bCanOrbit && Controller != NULL) FOrbitDelta.Y = -DeltaY * FOrbitMultiplier;
 }
 
-void AOrbitCamera::Pan(const float DeltaX, const float DeltaY)
+void ATestOrbitCamera::Pan(const float DeltaX, const float DeltaY)
 {
 	if (!bCanPan || Controller == NULL) return;
-
+	
 	UPlayer* player = GetNetOwningPlayer();
 	ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(player);
 
 	if (LocalPlayer != NULL && LocalPlayer->ViewportClient != NULL && LocalPlayer->ViewportClient->Viewport != NULL)
 	{
+		/*
 		FSceneViewFamilyContext ViewFamily(FSceneViewFamily::ConstructionValues(
-		LocalPlayer->ViewportClient->Viewport,
-		GetWorld()->Scene,
-		LocalPlayer->ViewportClient->EngineShowFlags).SetRealtimeUpdate(true));
+			LocalPlayer->ViewportClient->Viewport,
+			GetWorld()->Scene,
+			LocalPlayer->ViewportClient->EngineShowFlags).SetRealtimeUpdate(true));
 
 		FVector ViewLocation;
 		FRotator ViewRotation;
 		FSceneView* SceneView = LocalPlayer->CalcSceneView(
-		&ViewFamily,
-		ViewLocation,
-		ViewRotation,
-		LocalPlayer->ViewportClient->Viewport);
+			&ViewFamily,
+			ViewLocation,
+			ViewRotation,
+			LocalPlayer->ViewportClient->Viewport);
 
 		FVector WorldOrigin;
 		FVector WorldDirection;
-
+		
 		//Controller->CastToPlayerController()->GetMousePosition(MouseX, MouseY);
 		//UE_LOG(LogTemp, Warning, TEXT("MouseX: %f | Val: %f"), MouseX, DeltaX);
 
@@ -89,20 +90,16 @@ void AOrbitCamera::Pan(const float DeltaX, const float DeltaY)
 		//UE_LOG(LogTemp, Warning, TEXT("deltaX: %f | deltaY: %f"), DeltaX, DeltaY);
 
 		SceneView->DeprojectFVector2D(FVector2D(ViewportSize.X/2 - DeltaX, ViewportSize.Y/2 - DeltaY), WorldOrigin, WorldDirection);
-		FVector SpringOffset = WorldOrigin + (WorldDirection * (FVector::Dist(WorldOrigin, GetActorLocation())));
+		FVector SpringOffset = WorldOrigin + (WorldDirection * CameraBoom->TargetArmLength);
 
-
-		SetActorLocation(FVector(GetActorLocation().X, SpringOffset.Y, SpringOffset.Z));
-
-		//this->AddActorLocalOffset(FVector(0, -DeltaX, -DeltaY));
-
-		//CameraBoom->SetWorldLocation(FVector(SpringOffset.X, CameraBoom->GetTran);
+		CameraBoom->SetWorldLocation(SpringOffset);
 
 		//CameraBoom->SetWorldLocation(SpringOffset);
 		//CameraBoom->AddLocalOffset()
-		//FVector SpringOffset = WorldOrigin + (WorldDirection * CameraBoom->TargetArmLength) CameraBoom->AddLocalTransform()
+		//FVector SpringOffset = WorldOrigin + (WorldDirection * CameraBoom->TargetArmLength) CameraBoom->AddLocalTransform()	
 		//UE_LOG(LogTemp, Warning, TEXT("XOffset: %f"), SpringOffset.X);
 		DrawDebugSphere(GetWorld(), SpringOffset, 3.0f, 10, FColor::Blue, true, 100.0f);
 		//UE_LOG(LogTemp, Warning, TEXT("X: %f Y: %f Z: %f"), WorldOrigin.X, WorldOrigin.Y, WorldOrigin.Z);
+		*/
 	}
 }

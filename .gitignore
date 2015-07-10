@@ -70,4 +70,7 @@ DerivedDataCache/*
 .ctrlp_cache/
 
 .svn/*
+Content/Images/*
 
+Source/AlchemyAnimation/Private/AlchemyAnimation.cpp
+Source/AlchemyAnimation/Public/AlchemyAnimation.h

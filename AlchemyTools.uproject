@@ -26,6 +26,11 @@
 			"Name": "AlchemySideScroller",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
+		},
+        {
+			"Name": "AlchemyUtils",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }

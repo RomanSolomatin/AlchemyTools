@@ -26,6 +26,7 @@ public class AlchemyToolsTarget : TargetRules
 		"AlchemyTools", 
 		"AlchemyCamera", 
 		"AlchemyIO", 
-		"AlchemySideScroller" } );
+		"AlchemySideScroller",
+		"AlchemyUtils"} );
 	}
 }

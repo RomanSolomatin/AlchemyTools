@@ -6,7 +6,6 @@
 */
 
 #pragma once
-
 #include "Object.h"
 #include "Engine.h"
 #include <cstddef>

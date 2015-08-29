@@ -17,7 +17,8 @@ public class AlchemyTools : ModuleRules
 		"InputCore", 
 		"AlchemyCamera", 
         "AlchemySideScroller",
-		"AlchemyIO" });
+		"AlchemyIO",
+        "AlchemyUtils"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

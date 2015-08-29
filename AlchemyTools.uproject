@@ -14,23 +14,26 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		},
-        {
-            "Name": "AlchemyIO",
-            "Type": "Runtime",
-            "LoadingPhase": "PreDefault",
-            "AdditionalDependencies": [
-                "CoreUObject"
-            ]
-        },
-        {
+		{
+			"Name": "AlchemyIO",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"AdditionalDependencies": [
+				"CoreUObject"
+			]
+		},
+		{
 			"Name": "AlchemySideScroller",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		},
-        {
+		{
 			"Name": "AlchemyUtils",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
+			"LoadingPhase": "PreDefault",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	]
 }

@@ -5,7 +5,6 @@
 * Author: Chris Little
 */
 
-
 #include "AlchemyUtils.h"
 #include <cstdlib>
 #include <cmath>

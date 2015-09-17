@@ -91,10 +91,8 @@ UTexture2D* ULoadTexture::LoadDDS(FString TextureFilename)
 
 			/* Create transient texture */
 			Texture = UTexture2D::CreateTransient(DDSLoadHelper.DDSHeader->dwWidth, DDSLoadHelper.DDSHeader->dwHeight, Format);
-			//Texture->MipGenSettings = TMGS_LeaveExistingMips;
 			Texture->PlatformData->NumSlices = 1;
 			Texture->NeverStream = true;
-			//Texture->Rename(*TextureName);
 
 			/* Get pointer to actual data */
 			uint8* DataPtr = (uint8*)DDSLoadHelper.GetDDSDataPointer();
